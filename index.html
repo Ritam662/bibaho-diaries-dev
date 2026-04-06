@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bibaho Diaries — Legacy Wedding Commissions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Tenor+Sans&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════════
+   ROOT SYSTEM — Deep Navy Luxury
+═══════════════════════════════════════════════ */
+:root {
+  --navy:      #050d1a;
+  --navy-mid:  #081223;
+  --navy-lift: #0c1a30;
+  --navy-edge: #112040;
+  --platinum:  #d8dfe8;
+  --silver:    #a8b4c0;
+  --silver-dim:#6a7a8a;
+  --teal:      #1a7a6e;
+  --teal-glow: #22a090;
+  --teal-dim:  #0f4d45;
+  --gold-trace:#8a7a5a;
+  --gold-soft: #b8a878;
+  --white-pure:#f0f4f8;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; scroll-behavior:smooth; }
+
+body {
+  font-family: 'Tenor Sans', sans-serif;
+  background: var(--navy);
+  color: var(--platinum);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ═══════ NOISE LAYER ═══════ */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:9990; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  opacity:0.5;
+}
+
+/* ═══════ CURSOR ═══════ */
+#cur-dot {
+  width:8px; height:8px; background:var(--teal-glow); border-radius:50%;
+  position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+  transform:translate(-50%,-50%); transition:width .3s,height .3s,background .3s;
+}
+#cur-ring {
+  width:40px; height:40px;
+  border:1px solid rgba(26,122,110,0.4); border-radius:50%;
+  position:fixed; top:0; left:0; pointer-events:none; z-index:9998;
+  transform:translate(-50%,-50%); transition:all .15s ease;
+}
+body.c-hover #cur-dot  { width:52px; height:52px; background:rgba(26,122,110,0.12); }
+body.c-hover #cur-ring { width:0; height:0; opacity:0; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+#nav {
+  position:fixed; top:0; left:0; right:0; z-index:800;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:36px 72px;
+  transition:padding .5s, background .5s, border-color .5s;
+  border-bottom:1px solid transparent;
+}
+#nav.scrolled {
+  padding:18px 72px;
+  background:rgba(5,13,26,0.96);
+  backdrop-filter:blur(20px);
+  border-bottom-color:rgba(168,180,192,0.06);
+}
+
+.nav-logo-wrap { text-decoration:none; display:flex; flex-direction:column; }
+.nav-logo-main {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem; font-weight:600; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--white-pure);
+  line-height:1;
+}
+.nav-logo-script {
+  font-family:'Pinyon Script',cursive;
+  font-size:1rem; color:var(--teal-glow); line-height:1; margin-top:2px;
+  letter-spacing:0.05em;
+}
+
+.nav-center {
+  display:flex; gap:52px; list-style:none;
+}
+.nav-center a {
+  font-family:'Tenor Sans',sans-serif;
+  font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--silver-dim); text-decoration:none; transition:color .3s;
+  position:relative;
+}
+.nav-center a::after {
+  content:''; position:absolute; bottom:-6px; left:0;
+  width:0; height:1px; background:var(--teal-glow);
+  transition:width .4s cubic-bezier(.4,0,.2,1);
+}
+.nav-center a:hover { color:var(--platinum); }
+.nav-center a:hover::after { width:100%; }
+
+.nav-apply {
+  font-size:0.58rem; letter-spacing:0.3em; text-transform:uppercase;
+  font-weight:400; color:var(--teal-glow);
+  border:1px solid rgba(26,122,110,0.45);
+  padding:12px 30px; text-decoration:none;
+  transition:all .4s; position:relative; overflow:hidden;
+}
+.nav-apply::before {
+  content:''; position:absolute; inset:0;
+  background:var(--teal); transform:translateX(-101%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.nav-apply span { position:relative; z-index:1; }
+.nav-apply:hover { color:var(--white-pure); }
+.nav-apply:hover::before { transform:translateX(0); }
+
+/* ═══════════════════════════════════════════════
+   HERO — FULL CINEMATIC
+═══════════════════════════════════════════════ */
+.hero {
+  height:100vh; min-height:720px;
+  position:relative; display:flex; align-items:center; overflow:hidden;
+}
+
+/* Simulated video BG — dark cinematic gradient with animated light sweep */
+.hero-film {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 15% 60%, rgba(26,122,110,0.07) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 25%, rgba(8,18,35,0.8) 0%, transparent 50%),
+    linear-gradient(135deg, #040c18 0%, #060f1e 40%, #030a14 100%);
+}
+
+/* Film grain scanline effect */
+.hero-scanlines {
+  position:absolute; inset:0; pointer-events:none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.04) 3px,
+    rgba(0,0,0,0.04) 4px
+  );
+  animation:scanShift 12s linear infinite;
+  opacity:0.3;
+}
+@keyframes scanShift { from{background-position:0 0} to{background-position:0 100px} }
+
+/* Rotating precision ring */
+.hero-ring-outer {
+  position:absolute;
+  width:min(90vw,820px); height:min(90vw,820px);
+  border-radius:50%;
+  border:1px solid rgba(168,180,192,0.05);
+  top:50%; left:60%;
+  transform:translate(-50%,-50%);
+  animation:precisionSpin 120s linear infinite;
+}
+.hero-ring-inner {
+  position:absolute; inset:60px; border-radius:50%;
+  border:1px solid rgba(26,122,110,0.08);
+}
+.hero-ring-tick {
+  position:absolute; top:0; left:50%; width:1px; height:20px;
+  background:linear-gradient(to bottom,var(--teal-glow),transparent);
+  transform-origin:50% 410px;
+}
+@keyframes precisionSpin { to { transform:translate(-50%,-50%) rotate(360deg); } }
+
+/* Silver light leak */
+.hero-leak {
+  position:absolute;
+  width:2px; height:60vh;
+  background:linear-gradient(to bottom,transparent,rgba(168,180,192,0.06),transparent);
+  top:0; left:55%; transform:rotate(20deg);
+}
+
+.hero-content {
+  position:relative; z-index:10;
+  padding:0 72px; max-width:900px;
+}
+
+.hero-prelude {
+  display:flex; align-items:center; gap:20px;
+  margin-bottom:40px;
+  opacity:0; animation:slideIn .9s cubic-bezier(.4,0,.2,1) forwards .3s;
+}
+.hero-prelude-line { width:52px; height:1px; background:var(--teal-glow); opacity:0.6; }
+.hero-prelude-text {
+  font-size:0.55rem; letter-spacing:0.45em; text-transform:uppercase;
+  color:var(--teal-glow); font-weight:400;
+}
+
+.hero-h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,9vw,10rem);
+  font-weight:300; line-height:0.9;
+  letter-spacing:-0.02em; color:var(--white-pure);
+  opacity:0; animation:slideIn 1.2s cubic-bezier(.16,1,.3,1) forwards .5s;
+}
+.hero-h1-em {
+  display:block; font-style:italic; font-weight:300;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(168,180,192,0.35);
+}
+
+.hero-script-line {
+  font-family:'Pinyon Script',cursive;
+  font-size:clamp(2.5rem,5vw,5rem);
+  color:rgba(26,122,110,0.6); display:block;
+  margin-top:4px; letter-spacing:0.02em;
+  opacity:0; animation:slideIn 1s ease forwards .8s;
+}
+
+.hero-descriptor {
+  margin-top:40px; margin-bottom:56px;
+  font-size:0.78rem; font-weight:400; letter-spacing:0.12em;
+  color:var(--silver-dim); line-height:1.8;
+  max-width:480px;
+  opacity:0; animation:slideIn 1s ease forwards 1.1s;
+}
+
+.hero-actions {
+  display:flex; align-items:center; gap:24px;
+  opacity:0; animation:slideIn 1s ease forwards 1.4s;
+}
+
+.btn-commission {
+  font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase;
+  font-weight:400; color:var(--navy);
+  background:var(--teal-glow); padding:17px 48px;
+  text-decoration:none; position:relative; overflow:hidden;
+  transition:all .4s;
+}
+.btn-commission::before {
+  content:''; position:absolute; inset:0;
+  background:var(--teal); transform:scaleX(0); transform-origin:left;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.btn-commission span { position:relative; z-index:1; }
+.btn-commission:hover::before { transform:scaleX(1); }
+.btn-commission:hover { color:var(--white-pure); }
+
+.btn-reel {
+  font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--silver-dim); text-decoration:none;
+  display:flex; align-items:center; gap:14px; transition:color .3s;
+}
+.btn-reel-circle {
+  width:44px; height:44px; border-radius:50%;
+  border:1px solid rgba(168,180,192,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.7rem; color:var(--platinum);
+  transition:all .4s; flex-shrink:0;
+}
+.btn-reel:hover { color:var(--platinum); }
+.btn-reel:hover .btn-reel-circle { border-color:var(--teal-glow); color:var(--teal-glow); }
+
+/* Corner metadata */
+.hero-meta {
+  position:absolute; right:72px; bottom:60px;
+  display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+  opacity:0; animation:slideIn 1s ease forwards 1.8s;
+}
+.hero-meta-item {
+  font-size:0.52rem; letter-spacing:0.3em; text-transform:uppercase;
+  color:rgba(168,180,192,0.25);
+}
+
+.hero-scroll-cue {
+  position:absolute; bottom:44px; left:50%;
+  transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  opacity:0; animation:slideIn 1s ease forwards 2.2s;
+}
+.hero-scroll-label {
+  font-size:0.5rem; letter-spacing:0.4em; text-transform:uppercase;
+  color:rgba(168,180,192,0.2);
+}
+.hero-scroll-bar {
+  width:1px; height:56px;
+  background:linear-gradient(to bottom,var(--teal-glow),transparent);
+  animation:breathe 2.5s ease-in-out infinite;
+}
+@keyframes breathe { 0%,100%{opacity:.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.3)} }
+
+@keyframes slideIn {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════════ */
+.marquee-band {
+  overflow:hidden; padding:16px 0;
+  border-top:1px solid rgba(168,180,192,0.05);
+  border-bottom:1px solid rgba(168,180,192,0.05);
+  background:var(--navy-mid);
+}
+.marquee-track {
+  display:flex; gap:0; white-space:nowrap;
+  animation:marqueeLeft 35s linear infinite;
+}
+.marquee-item {
+  font-size:0.55rem; letter-spacing:0.35em; text-transform:uppercase;
+  color:rgba(168,180,192,0.3); padding:0 44px; flex-shrink:0;
+}
+.marquee-sep { color:rgba(26,122,110,0.5); padding:0 8px; }
+@keyframes marqueeLeft { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════════════════════
+   PORTFOLIO — SYMMETRIC GRID
+═══════════════════════════════════════════════ */
+.portfolio-section {
+  padding:140px 72px;
+  position:relative;
+}
+
+.section-head {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:72px;
+}
+.section-eyebrow {
+  font-size:0.55rem; letter-spacing:0.38em; text-transform:uppercase;
+  color:var(--teal-glow); margin-bottom:16px;
+  display:flex; align-items:center; gap:16px;
+}
+.section-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--teal); }
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,4vw,5.5rem); font-weight:300;
+  color:var(--white-pure); line-height:1;
+}
+.section-title em { font-style:italic; color:transparent; -webkit-text-stroke:1px rgba(168,180,192,0.3); }
+
+.section-note {
+  font-size:0.72rem; font-weight:400; letter-spacing:0.06em;
+  color:var(--silver-dim); max-width:280px; text-align:right;
+  line-height:1.7;
+}
+
+/* Symmetric 3-col grid — strict equal sizing */
+.portfolio-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3px;
+}
+
+.p-cell {
+  position:relative; overflow:hidden;
+  background:var(--navy-lift);
+  aspect-ratio:3/4;
+  cursor:pointer;
+}
+.p-cell:nth-child(4),
+.p-cell:nth-child(5),
+.p-cell:nth-child(6) {
+  aspect-ratio:4/3;
+}
+
+.p-cell-art {
+  position:absolute; inset:0;
+  transition:transform .9s cubic-bezier(.4,0,.2,1);
+}
+.p-cell:hover .p-cell-art { transform:scale(1.05); }
+
+/* Simulated premium photo atmospheres */
+.pa1 { background:linear-gradient(145deg,#0a1428 0%,#152038 40%,#0c1830 100%);
+       box-shadow:inset 0 0 120px rgba(26,122,110,0.06); }
+.pa2 { background:linear-gradient(145deg,#0e1832 0%,#162440 60%,#0a1428 100%);
+       box-shadow:inset 0 0 120px rgba(168,180,192,0.04); }
+.pa3 { background:linear-gradient(145deg,#081020 0%,#101c34 50%,#06100e 100%); }
+.pa4 { background:linear-gradient(145deg,#0c1428 0%,#182038 100%); }
+.pa5 { background:linear-gradient(145deg,#080e20 0%,#101830 60%,#0a1420 100%); }
+.pa6 { background:linear-gradient(145deg,#0a1222 0%,#14203c 100%); }
+
+/* Radial light blob on each */
+.p-cell-art::after {
+  content:''; position:absolute;
+  width:60%; height:60%; border-radius:50%;
+  background:radial-gradient(circle,rgba(168,180,192,0.06) 0%,transparent 70%);
+  top:20%; left:20%;
+}
+
+/* Cinematic top-bar label */
+.p-cell-bar {
+  position:absolute; top:0; left:0; right:0;
+  height:2px;
+  background:linear-gradient(to right,transparent,var(--teal-glow),transparent);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.p-cell:hover .p-cell-bar { transform:scaleX(1); }
+
+.p-cell-info {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(4,10,20,.9) 0%,transparent 55%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:28px 28px 32px;
+  opacity:0; transition:opacity .5s;
+}
+.p-cell:hover .p-cell-info { opacity:1; }
+
+.p-cell-names {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem; font-style:italic; font-weight:300;
+  color:var(--white-pure);
+}
+.p-cell-type {
+  font-size:0.52rem; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--teal-glow); margin-top:4px;
+}
+
+/* ═══════════════════════════════════════════════
+   PREMIUM PILLARS
+═══════════════════════════════════════════════ */
+.pillars-section {
+  padding:140px 72px;
+  background:var(--navy-mid);
+  position:relative; overflow:hidden;
+}
+
+.pillars-section::before {
+  content:'LEGACY'; pointer-events:none;
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:28vw; font-weight:700;
+  color:rgba(168,180,192,0.015);
+  white-space:nowrap; letter-spacing:0.1em;
+}
+
+.pillars-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(168,180,192,0.05);
+  margin-top:80px;
+}
+
+.pillar-card {
+  background:var(--navy-mid);
+  padding:56px 44px;
+  position:relative; overflow:hidden;
+  transition:background .4s;
+}
+.pillar-card:hover { background:var(--navy-lift); }
+
+.pillar-card::before {
+  content:''; position:absolute;
+  top:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right,transparent,var(--teal),transparent);
+  transform:scaleX(0); transform-origin:center;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.pillar-card:hover::before { transform:scaleX(1); }
+
+.pillar-icon-wrap {
+  width:52px; height:52px;
+  border:1px solid rgba(26,122,110,0.25);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:32px;
+  transition:border-color .4s;
+}
+.pillar-card:hover .pillar-icon-wrap { border-color:rgba(26,122,110,0.6); }
+
+.pillar-icon {
+  font-size:1.3rem; line-height:1;
+}
+
+.pillar-num {
+  position:absolute; top:28px; right:32px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:4.5rem; font-weight:700;
+  color:rgba(168,180,192,0.04); line-height:1;
+  transition:color .4s;
+}
+.pillar-card:hover .pillar-num { color:rgba(168,180,192,0.07); }
+
+.pillar-label {
+  font-size:0.52rem; letter-spacing:0.32em; text-transform:uppercase;
+  color:var(--teal-glow); margin-bottom:14px;
+}
+
+.pillar-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:400;
+  color:var(--white-pure); margin-bottom:18px; line-height:1.2;
+}
+
+.pillar-desc {
+  font-size:0.78rem; font-weight:400; line-height:1.9;
+  color:var(--silver-dim); letter-spacing:0.03em;
+}
+
+/* ═══════════════════════════════════════════════
+   VAULT SECTION — Air-Gapped Security
+═══════════════════════════════════════════════ */
+.vault-section {
+  padding:140px 72px;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:100px; align-items:center;
+  position:relative; overflow:hidden;
+}
+
+.vault-section::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at 100% 50%,rgba(26,122,110,0.05) 0%,transparent 50%);
+}
+
+.vault-left {}
+
+.vault-eyebrow {
+  font-size:0.52rem; letter-spacing:0.38em; text-transform:uppercase;
+  color:var(--teal-glow); margin-bottom:24px;
+  display:flex; align-items:center; gap:16px;
+}
+.vault-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--teal); }
+
+.vault-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,3.5vw,4.2rem); font-weight:300;
+  color:var(--white-pure); line-height:1.1; margin-bottom:24px;
+}
+.vault-title em { font-style:italic; display:block; color:var(--teal-glow); }
+
+.vault-desc {
+  font-size:0.82rem; line-height:1.95; color:var(--silver-dim);
+  letter-spacing:0.04em; margin-bottom:20px;
+}
+
+.vault-spec {
+  margin-top:40px;
+  border-top:1px solid rgba(168,180,192,0.07);
+  padding-top:36px;
+  display:flex; flex-direction:column; gap:20px;
+}
+.vs-row {
+  display:flex; gap:20px; align-items:flex-start;
+}
+.vs-icon {
+  width:34px; height:34px; flex-shrink:0;
+  border:1px solid rgba(26,122,110,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.85rem;
+}
+.vs-text {}
+.vs-title {
+  font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase;
+  color:var(--platinum); margin-bottom:3px;
+}
+.vs-detail {
+  font-size:0.72rem; color:var(--silver-dim); line-height:1.6;
+}
+
+/* DATA PATH INFOGRAPHIC */
+.vault-right {
+  position:relative;
+}
+
+.data-path {
+  display:flex; flex-direction:column; gap:0; position:relative;
+}
+.data-path::before {
+  content:''; position:absolute;
+  left:30px; top:36px; bottom:36px; width:1px;
+  background:linear-gradient(to bottom,var(--teal),rgba(26,122,110,0.1));
+}
+
+.dp-node {
+  display:flex; align-items:center; gap:24px;
+  padding:24px 0; position:relative;
+}
+.dp-dot {
+  width:60px; height:60px; flex-shrink:0;
+  border:1px solid rgba(26,122,110,0.35);
+  background:var(--navy-lift);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; position:relative; z-index:1;
+  transition:border-color .4s, background .4s;
+}
+.dp-node:hover .dp-dot {
+  border-color:var(--teal-glow);
+  background:rgba(26,122,110,0.1);
+}
+.dp-dot::before {
+  content:''; position:absolute; inset:-1px;
+  border:1px solid transparent;
+  transition:border-color .4s;
+}
+.dp-node:hover .dp-dot::before { border-color:rgba(26,122,110,0.2); }
+
+.dp-text {}
+.dp-label {
+  font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--teal-glow); margin-bottom:4px;
+}
+.dp-value {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:400; color:var(--white-pure);
+}
+.dp-note {
+  font-size:0.68rem; color:var(--silver-dim); margin-top:2px;
+}
+
+.dp-connector {
+  display:flex; align-items:center; gap:0;
+  padding:6px 0 6px 22px;
+}
+.dp-arrow {
+  width:1px; height:32px;
+  background:linear-gradient(to bottom,rgba(26,122,110,0.6),rgba(26,122,110,0.2));
+  margin-left:29px;
+}
+
+/* ═══════════════════════════════════════════════
+   METHODOLOGY — Silent Narrative
+═══════════════════════════════════════════════ */
+.method-section {
+  padding:140px 72px;
+  background:var(--navy-mid);
+}
+
+.method-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:2px; margin-top:80px;
+  background:rgba(168,180,192,0.04);
+}
+
+.method-cell {
+  background:var(--navy-mid); padding:72px 56px;
+  position:relative; overflow:hidden;
+}
+.method-cell:hover { background:rgba(12,26,48,0.8); }
+
+.method-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:7rem; font-weight:700;
+  color:rgba(168,180,192,0.04); line-height:1;
+  position:absolute; top:16px; right:28px;
+}
+
+.method-badge {
+  font-size:0.5rem; letter-spacing:0.35em; text-transform:uppercase;
+  color:var(--teal-glow); margin-bottom:16px;
+  border:1px solid rgba(26,122,110,0.2);
+  display:inline-block; padding:5px 14px;
+}
+
+.method-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem; font-weight:300; font-style:italic;
+  color:var(--white-pure); margin-bottom:20px; line-height:1.15;
+}
+
+.method-desc {
+  font-size:0.78rem; line-height:1.95; color:var(--silver-dim);
+  letter-spacing:0.03em;
+}
+
+.method-rule {
+  margin-top:28px;
+  padding-top:24px;
+  border-top:1px solid rgba(168,180,192,0.06);
+  font-size:0.62rem; letter-spacing:0.15em;
+  color:rgba(26,122,110,0.6); font-style:italic;
+  font-family:'Cormorant Garamond',serif;
+}
+
+/* ═══════════════════════════════════════════════
+   TESTIMONIALS — Velvet Pull-quotes
+═══════════════════════════════════════════════ */
+.reviews-section {
+  padding:140px 72px; position:relative; overflow:hidden;
+}
+
+.reviews-section::before {
+  content:'"'; pointer-events:none;
+  font-family:'Cormorant Garamond',serif;
+  font-size:70vw; font-weight:700;
+  color:rgba(168,180,192,0.015);
+  position:absolute; top:-15%; left:-8%; line-height:1;
+}
+
+.review-track {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:24px; margin-top:72px;
+}
+
+.review-card {
+  border:1px solid rgba(168,180,192,0.06);
+  padding:52px 40px;
+  position:relative; overflow:hidden;
+  transition:border-color .4s, transform .4s;
+  background:rgba(255,255,255,0.01);
+}
+.review-card:hover {
+  border-color:rgba(26,122,110,0.2);
+  transform:translateY(-6px);
+  background:rgba(255,255,255,0.02);
+}
+
+.review-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right,transparent,var(--teal),transparent);
+  transform:scaleX(0); transition:transform .5s;
+}
+.review-card:hover::before { transform:scaleX(1); }
+
+.rv-stars { display:flex; gap:5px; margin-bottom:24px; }
+.rv-star { width:10px; height:10px; background:var(--teal-glow); clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+
+.rv-quote {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem; font-weight:300; font-style:italic;
+  line-height:1.8; color:rgba(216,223,232,0.65); margin-bottom:36px;
+}
+
+.rv-rule { width:28px; height:1px; background:rgba(26,122,110,0.4); margin-bottom:20px; }
+
+.rv-name {
+  font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--platinum);
+}
+.rv-occasion {
+  font-size:0.56rem; letter-spacing:0.18em; color:var(--silver-dim);
+  margin-top:5px;
+}
+
+/* ═══════════════════════════════════════════════
+   APPLICATION FORM — The Velvet Rope
+═══════════════════════════════════════════════ */
+.apply-section {
+  padding:140px 72px;
+  background:var(--navy-mid);
+  display:grid; grid-template-columns:1fr 1.1fr;
+  gap:100px; align-items:start;
+  position:relative; overflow:hidden;
+}
+
+.apply-section::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at 0% 60%,rgba(26,122,110,0.04) 0%,transparent 50%);
+}
+
+.apply-left { position:relative; z-index:1; }
+
+.apply-kicker {
+  font-size:0.52rem; letter-spacing:0.38em; text-transform:uppercase;
+  color:var(--teal-glow); margin-bottom:24px;
+  display:flex; align-items:center; gap:16px;
+}
+.apply-kicker::before { content:''; display:block; width:32px; height:1px; background:var(--teal); }
+
+.apply-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,4vw,5rem); font-weight:300;
+  color:var(--white-pure); line-height:1.05; margin-bottom:20px;
+}
+.apply-title em { font-style:italic; display:block; color:transparent; -webkit-text-stroke:1px rgba(168,180,192,0.3); }
+
+.apply-script {
+  font-family:'Pinyon Script',cursive;
+  font-size:clamp(1.8rem,3vw,3rem); color:rgba(26,122,110,0.5);
+  display:block; margin-bottom:32px;
+}
+
+.apply-desc {
+  font-size:0.8rem; line-height:1.95; color:var(--silver-dim);
+  letter-spacing:0.04em; max-width:380px;
+}
+
+.apply-perks {
+  margin-top:48px; display:flex; flex-direction:column; gap:14px;
+}
+.ap-item {
+  display:flex; align-items:center; gap:16px;
+  font-size:0.72rem; color:var(--silver-dim); letter-spacing:0.05em;
+}
+.ap-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--teal-glow); flex-shrink:0;
+}
+
+/* FORM CARD */
+.apply-form-card {
+  border:1px solid rgba(168,180,192,0.06);
+  padding:60px 52px;
+  background:rgba(255,255,255,0.015);
+  position:relative; z-index:1;
+}
+
+.afc-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; font-style:italic; font-weight:300;
+  color:var(--white-pure); margin-bottom:8px;
+}
+.afc-sub {
+  font-size:0.58rem; letter-spacing:0.2em; color:var(--silver-dim);
+  margin-bottom:44px; padding-bottom:36px;
+  border-bottom:1px solid rgba(168,180,192,0.06);
+}
+
+.f-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:28px; }
+.fg { display:flex; flex-direction:column; gap:9px; margin-bottom:28px; }
+.fg:last-of-type { margin-bottom:0; }
+.fl {
+  font-size:0.5rem; letter-spacing:0.32em; text-transform:uppercase;
+  color:rgba(168,180,192,0.4);
+}
+.fi {
+  background:transparent; border:none;
+  border-bottom:1px solid rgba(168,180,192,0.1);
+  padding:13px 0;
+  font-family:'Tenor Sans',sans-serif;
+  font-size:0.85rem; font-weight:400;
+  color:var(--platinum); outline:none;
+  transition:border-color .3s; appearance:none;
+  -webkit-appearance:none;
+}
+.fi:focus { border-bottom-color:var(--teal-glow); }
+.fi::placeholder { color:rgba(168,180,192,0.2); }
+.fi option { background:var(--navy); color:var(--platinum); }
+
+.btn-apply-submit {
+  margin-top:40px; width:100%;
+  background:var(--teal-glow); color:var(--navy);
+  border:none; padding:18px 0;
+  font-family:'Tenor Sans',sans-serif;
+  font-size:0.6rem; letter-spacing:0.32em; text-transform:uppercase;
+  font-weight:400; cursor:pointer;
+  position:relative; overflow:hidden; transition:color .4s;
+}
+.btn-apply-submit::before {
+  content:''; position:absolute; inset:0;
+  background:var(--teal); transform:translateX(-101%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.btn-apply-submit span { position:relative; z-index:1; }
+.btn-apply-submit:hover { color:var(--white-pure); }
+.btn-apply-submit:hover::before { transform:translateX(0); }
+
+.apply-disclaimer {
+  font-size:0.58rem; color:rgba(168,180,192,0.25);
+  text-align:center; margin-top:16px; letter-spacing:0.06em; line-height:1.6;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background:var(--navy);
+  border-top:1px solid rgba(168,180,192,0.04);
+}
+
+.footer-body {
+  padding:80px 72px 60px;
+  display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:60px;
+}
+
+.fl-brand-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:600; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--white-pure);
+  text-decoration:none; display:block;
+}
+.fl-brand-script {
+  font-family:'Pinyon Script',cursive; font-size:1.1rem;
+  color:var(--teal-glow); display:block; line-height:1; margin-bottom:20px;
+}
+.fl-tagline {
+  font-size:0.75rem; line-height:1.85; color:var(--silver-dim);
+  max-width:220px; margin-bottom:32px; letter-spacing:0.04em;
+}
+.fl-socials { display:flex; gap:10px; }
+.fl-social {
+  width:36px; height:36px;
+  border:1px solid rgba(168,180,192,0.1);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--silver-dim); font-size:0.7rem;
+  text-decoration:none; transition:all .3s;
+}
+.fl-social:hover { border-color:var(--teal-glow); color:var(--teal-glow); }
+
+.fc-head {
+  font-size:0.52rem; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--teal-glow); margin-bottom:28px;
+}
+.fc-links { list-style:none; }
+.fc-links li { margin-bottom:13px; }
+.fc-links a {
+  font-size:0.78rem; color:var(--silver-dim);
+  text-decoration:none; letter-spacing:0.04em; transition:color .3s;
+}
+.fc-links a:hover { color:var(--platinum); }
+
+.footer-base {
+  padding:22px 72px;
+  border-top:1px solid rgba(168,180,192,0.04);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.fb-copy { font-size:0.58rem; letter-spacing:0.14em; color:rgba(168,180,192,0.2); }
+.fb-right { font-size:0.58rem; letter-spacing:0.1em; color:rgba(168,180,192,0.2); }
+.fb-right span { color:rgba(26,122,110,0.45); }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL SYSTEM
+═══════════════════════════════════════════════ */
+.sr { opacity:0; transform:translateY(36px); transition:opacity .9s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.4,0,.2,1); }
+.sr.visible { opacity:1; transform:translateY(0); }
+.sr.sl { transform:translateX(-36px); }
+.sr.sr2 { transform:translateX(36px); }
+.sr.sl.visible, .sr.sr2.visible { transform:translateX(0); }
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+.d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:1100px){
+  #nav{padding:24px 32px;}
+  #nav.scrolled{padding:16px 32px;}
+  .nav-center{display:none;}
+  .hero-content{padding:0 32px;}
+  .hero-meta{right:32px;}
+  .portfolio-section,.pillars-section,.vault-section,.method-section,.reviews-section,.apply-section{padding:80px 32px;}
+  .portfolio-grid{grid-template-columns:1fr 1fr;}
+  .pillars-grid{grid-template-columns:1fr;}
+  .vault-section,.apply-section{grid-template-columns:1fr; gap:60px;}
+  .method-grid{grid-template-columns:1fr;}
+  .review-track{grid-template-columns:1fr;}
+  .footer-body{grid-template-columns:1fr 1fr; gap:40px; padding:60px 32px 40px;}
+  .footer-base{padding:20px 32px; flex-direction:column; gap:8px;}
+  .f-row{grid-template-columns:1fr;}
+  .apply-form-card{padding:40px 28px;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- ══════ NAV ══════ -->
+<nav id="nav">
+  <a href="#" class="nav-logo-wrap">
+    <span class="nav-logo-main">Bibaho</span>
+    <span class="nav-logo-script">Diaries</span>
+  </a>
+
+  <ul class="nav-center">
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#vault">The Vault</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#commissions">Commissions</a></li>
+    <li><a href="#apply">Apply</a></li>
+  </ul>
+
+  <a href="#apply" class="nav-apply"><span>Reserve Your Legacy</span></a>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero" id="hero">
+  <div class="hero-film"></div>
+  <div class="hero-scanlines"></div>
+  <div class="hero-ring-outer">
+    <div class="hero-ring-inner"></div>
+    <div class="hero-ring-tick"></div>
+  </div>
+  <div class="hero-leak"></div>
+
+  <div class="hero-content">
+    <div class="hero-prelude">
+      <div class="hero-prelude-line"></div>
+      <span class="hero-prelude-text">Bengal · India · Est. 2009 · Legacy Commissions Only</span>
+    </div>
+
+    <h1 class="hero-h1">
+      We Document<br>
+      <span class="hero-h1-em">Legacies.</span>
+    </h1>
+    <span class="hero-script-line">not just weddings.</span>
+
+    <p class="hero-descriptor">
+      A closed-door atelier for discerning families who understand the difference between<br>
+      a photographer — and a custodian of their family's visual history.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#apply" class="btn-commission"><span>Apply for a Commission</span></a>
+      <a href="#portfolio" class="btn-reel">
+        <div class="btn-reel-circle">▶</div>
+        View the Work
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <span class="hero-meta-item">600+ Commissions · 25+ Cities</span>
+    <span class="hero-meta-item">Dual-Site Redundant Archive</span>
+    <span class="hero-meta-item">Next-Morning Cinematic Premiere</span>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="hero-scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ══════ MARQUEE ══════ -->
+<div class="marquee-band">
+  <div class="marquee-track" id="mq">
+    <span class="marquee-item">Legacy Documentation<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Cinematic Premiere<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Air-Gapped Archive<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Bespoke Color Science<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Silent Narrative Method<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Private Cinema Portal<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Pan India · Destination<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Legacy Documentation<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Cinematic Premiere<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Air-Gapped Archive<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Bespoke Color Science<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Silent Narrative Method<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Private Cinema Portal<span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Pan India · Destination<span class="marquee-sep">◆</span></span>
+  </div>
+</div>
+
+<!-- ══════ PORTFOLIO ══════ -->
+<section class="portfolio-section" id="portfolio">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow sr">Selected Commissions</div>
+      <h2 class="section-title sr d1">The<br><em>Archive</em></h2>
+    </div>
+    <p class="section-note sr d2">Only the top 1% of frames from our most breathtaking commissions are permitted here.</p>
+  </div>
+
+  <div class="portfolio-grid">
+    <!-- Row 1 — Portrait -->
+    <div class="p-cell sr d1">
+      <div class="p-cell-art pa1"></div>
+      <div class="p-cell-bar"></div>
+      <div class="p-cell-info">
+        <div class="p-cell-names">Ananya & Rohit</div>
+        <div class="p-cell-type">Wedding · Grand Hyatt Kolkata</div>
+      </div>
+    </div>
+    <div class="p-cell sr d2">
+      <div class="p-cell-art pa2"></div>
+      <div class="p-cell-bar"></div>
+      <div class="p-cell-info">
+        <div class="p-cell-names">Priya & Arjun</div>
+        <div class="p-cell-type">Pre-Wedding · Darjeeling Hills</div>
+      </div>
+    </div>
+    <div class="p-cell sr d3">
+      <div class="p-cell-art pa3"></div>
+      <div class="p-cell-bar"></div>
+      <div class="p-cell-info">
+        <div class="p-cell-names">Shreya & Karan</div>
+        <div class="p-cell-type">Wedding · Taj Bengal</div>
+      </div>
+    </div>
+    <!-- Row 2 — Landscape -->
+    <div class="p-cell sr d1">
+      <div class="p-cell-art pa4"></div>
+      <div class="p-cell-bar"></div>
+      <div class="p-cell-info">
+        <div class="p-cell-names">Meera & Dev</div>
+        <div class="p-cell-type">Cinematic Film · Udaipur</div>
+      </div>
+    </div>
+    <div class="p-cell sr d2">
+      <div class="p-cell-art pa5"></div>
+      <div class="p-cell-bar"></div>
+      <div class="p-cell-info">
+        <div class="p-cell-names">Tania & Sourav</div>
+        <div class="p-cell-type">Haldi · ITC Royal Bengal</div>
+      </div>
+    </div>
+    <div class="p-cell sr d3">
+      <div class="p-cell-art pa6"></div>
+      <div class="p-cell-bar"></div>
+      <div class="p-cell-info">
+        <div class="p-cell-names">Riya & Aryan</div>
+        <div class="p-cell-type">Destination Wedding · Goa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PREMIUM PILLARS ══════ -->
+<section class="pillars-section" id="commissions">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow sr">Why Discerning Families Choose Us</div>
+      <h2 class="section-title sr d1">Proprietary<br><em>Systems</em></h2>
+    </div>
+    <p class="section-note sr d2">We don't sell packages. We deliver proprietary outcomes no other studio in India can replicate.</p>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar-card sr d1">
+      <span class="pillar-num">01</span>
+      <div class="pillar-icon-wrap"><span class="pillar-icon">🔒</span></div>
+      <div class="pillar-label">Security Protocol</div>
+      <h3 class="pillar-title">Air-Gapped<br>Memory Vault</h3>
+      <p class="pillar-desc">Your memories are protected by our Dual-Site Redundancy System. Every frame simultaneously backed to an on-site server and an off-site air-gapped vault. Your family legacy is physically impossible to lose.</p>
+    </div>
+    <div class="pillar-card sr d2">
+      <span class="pillar-num">02</span>
+      <div class="pillar-icon-wrap"><span class="pillar-icon">🎬</span></div>
+      <div class="pillar-label">Hollywood Standard</div>
+      <h3 class="pillar-title">Bespoke Digital<br>Development</h3>
+      <p class="pillar-desc">We do not use generic filters. Every commission undergoes a custom Color Grading process. We develop a bespoke "Digital Negative" for your wedding — skin tones preserved with feature-film precision. Timeless in twenty years.</p>
+    </div>
+    <div class="pillar-card sr d3">
+      <span class="pillar-num">03</span>
+      <div class="pillar-icon-wrap"><span class="pillar-icon">👁</span></div>
+      <div class="pillar-label">Silent Methodology</div>
+      <h3 class="pillar-title">Discreet<br>Observation</h3>
+      <p class="pillar-desc">We utilize long-focal cinema lenses to capture intimate moments from a distance. You remain fully present in your day without a production crew in your face. We are ghosts in the room — capturing truth, not performance.</p>
+    </div>
+    <div class="pillar-card sr d1">
+      <span class="pillar-num">04</span>
+      <div class="pillar-icon-wrap"><span class="pillar-icon">⚡</span></div>
+      <div class="pillar-label">Exclusive Delivery</div>
+      <h3 class="pillar-title">Next-Morning<br>Cinematic Premiere</h3>
+      <p class="pillar-desc">While industry standard delivery is 3–6 months, we provide a Next-Morning Cinematic Premiere. Before your honeymoon, a professionally edited film is in your private portal — share your story while the emotion is still fresh.</p>
+    </div>
+    <div class="pillar-card sr d2">
+      <span class="pillar-num">05</span>
+      <div class="pillar-icon-wrap"><span class="pillar-icon">🎭</span></div>
+      <div class="pillar-label">Luxury Delivery</div>
+      <h3 class="pillar-title">Private Cinema<br>Landing Page</h3>
+      <p class="pillar-desc">Every commission includes a password-protected, high-bitrate streaming platform — designed for your family. No Google Drive links. No compression. A beautiful, ad-free environment on any 4K screen in the world.</p>
+    </div>
+    <div class="pillar-card sr d3">
+      <span class="pillar-num">06</span>
+      <div class="pillar-icon-wrap"><span class="pillar-icon">🎯</span></div>
+      <div class="pillar-label">Exclusive Access</div>
+      <h3 class="pillar-title">Limited Annual<br>Commissions</h3>
+      <p class="pillar-desc">We accept a maximum of 24 wedding commissions per year. This is not a limitation — it is a guarantee. Every family who commissions us receives our complete, undivided attention and craft.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ VAULT / SECURITY ══════ -->
+<section class="vault-section" id="vault">
+  <div class="vault-left">
+    <div class="vault-eyebrow sr">The Legacy Vault</div>
+    <h2 class="vault-title sr d1">
+      Your Family History,<br>
+      <em>Physically Impossible To Lose.</em>
+    </h2>
+    <p class="vault-desc sr d2">Standard vendors deliver your memories on a single hard drive — a single point of failure. We operate a military-grade Dual-Site Redundancy Protocol. Your memories are treated with the same security standards as financial institutions.</p>
+    <p class="vault-desc sr d2">Every frame we capture travels through a verified 3-stage pipeline before it ever reaches your hands.</p>
+
+    <div class="vault-spec sr d3">
+      <div class="vs-row">
+        <div class="vs-icon">🖥</div>
+        <div class="vs-text">
+          <div class="vs-title">On-Site Server Array</div>
+          <div class="vs-detail">TrueNAS RAID-6 array with real-time redundancy. Immediate on-location backup.</div>
+        </div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-icon">🔐</div>
+        <div class="vs-text">
+          <div class="vs-title">Air-Gapped Off-Site Vault</div>
+          <div class="vs-detail">Physically isolated secondary archive. No internet connection — zero remote compromise.</div>
+        </div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-icon">🌐</div>
+        <div class="vs-text">
+          <div class="vs-title">Private Cinema Portal</div>
+          <div class="vs-detail">Password-protected 4K streaming. No compression. No third-party platforms.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA PATH INFOGRAPHIC -->
+  <div class="vault-right sr sr2 d1">
+    <div class="data-path">
+      <div class="dp-node">
+        <div class="dp-dot">📷</div>
+        <div class="dp-text">
+          <div class="dp-label">Stage 01</div>
+          <div class="dp-value">Cinema Capture</div>
+          <div class="dp-note">RAW files · Dual card simultaneous write</div>
+        </div>
+      </div>
+      <div class="dp-arrow"></div>
+      <div class="dp-node">
+        <div class="dp-dot">💾</div>
+        <div class="dp-text">
+          <div class="dp-label">Stage 02</div>
+          <div class="dp-value">On-Site Ingestion</div>
+          <div class="dp-note">TrueNAS RAID-6 array · Same-day backup</div>
+        </div>
+      </div>
+      <div class="dp-arrow"></div>
+      <div class="dp-node">
+        <div class="dp-dot">🔒</div>
+        <div class="dp-text">
+          <div class="dp-label">Stage 03</div>
+          <div class="dp-value">Air-Gapped Vault</div>
+          <div class="dp-note">Off-site · No internet · Zero exposure</div>
+        </div>
+      </div>
+      <div class="dp-arrow"></div>
+      <div class="dp-node">
+        <div class="dp-dot">🎬</div>
+        <div class="dp-text">
+          <div class="dp-label">Stage 04</div>
+          <div class="dp-value">Digital Development</div>
+          <div class="dp-note">Bespoke color grading · Feature-film grade</div>
+        </div>
+      </div>
+      <div class="dp-arrow"></div>
+      <div class="dp-node">
+        <div class="dp-dot">🏛</div>
+        <div class="dp-text">
+          <div class="dp-label">Your Legacy</div>
+          <div class="dp-value">Private Cinema Portal</div>
+          <div class="dp-note">4K streaming · Password-protected · Forever</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ METHODOLOGY ══════ -->
+<section class="method-section" id="methodology">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow sr">How We Work</div>
+      <h2 class="section-title sr d1">The Silent<br><em>Approach</em></h2>
+    </div>
+    <p class="section-note sr d2">Our methodology was built for families who want to be fully present — not performers for a camera.</p>
+  </div>
+
+  <div class="method-grid">
+    <div class="method-cell sr d1">
+      <div class="method-num">01</div>
+      <div class="method-badge">The Lens Choice</div>
+      <h3 class="method-title">Long-Focal Cinema Glass</h3>
+      <p class="method-desc">We deploy telephoto cinema lenses that allow us to work from a distance. You will never have a camera in your face. Your emotions, your glances, your tears — captured from across the room, in perfect detail.</p>
+      <div class="method-rule">"We are ghosts. We capture truth, not performance."</div>
+    </div>
+    <div class="method-cell sr d2">
+      <div class="method-num">02</div>
+      <div class="method-badge">The Edit Philosophy</div>
+      <h3 class="method-title">Documentary Narrative</h3>
+      <p class="method-desc">Every film is edited as a documentary — not a montage. We identify the emotional arc of your day and build a linear story around it. The result is a film that will still make you cry in thirty years.</p>
+      <div class="method-rule">"We don't add drama. We find it."</div>
+    </div>
+    <div class="method-cell sr d1">
+      <div class="method-num">03</div>
+      <div class="method-badge">Color Science</div>
+      <h3 class="method-title">Bespoke Digital Negative</h3>
+      <p class="method-desc">We develop a custom LUT (Look-Up Table) for every commission — a unique color language for your wedding. No two films look the same. This is not editing. This is Digital Development.</p>
+      <div class="method-rule">"Your wedding has its own visual identity."</div>
+    </div>
+    <div class="method-cell sr d2">
+      <div class="method-num">04</div>
+      <div class="method-badge">The Team</div>
+      <h3 class="method-title">Coordinated Two-Unit System</h3>
+      <p class="method-desc">A dedicated Photo unit and a dedicated Film unit operate independently but in perfect coordination. No cross-compromise. The photographer is never pulling double duty with a video camera.</p>
+      <div class="method-rule">"Specialists, not generalists."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ TESTIMONIALS ══════ -->
+<section class="reviews-section">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow sr">Client Words</div>
+      <h2 class="section-title sr d1">What Families<br><em>Say</em></h2>
+    </div>
+  </div>
+
+  <div class="review-track">
+    <div class="review-card sr d1">
+      <div class="rv-stars"><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div></div>
+      <p class="rv-quote">We have shown the film to everyone who attended our wedding. They all say it's better than they remembered. That is not photography — that is memory enhancement.</p>
+      <div class="rv-rule"></div>
+      <div class="rv-name">Ananya & Rohit Das</div>
+      <div class="rv-occasion">Wedding Commission · Grand Hyatt Kolkata · 2024</div>
+    </div>
+    <div class="review-card sr d2">
+      <div class="rv-stars"><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div></div>
+      <p class="rv-quote">The next-morning premiere was something we never expected. We woke up to a cinematic film of our entire wedding. Our friends thought we'd hired a Bollywood crew. We hadn't. This is just their standard.</p>
+      <div class="rv-rule"></div>
+      <div class="rv-name">Priya & Arjun Sharma</div>
+      <div class="rv-occasion">Complete Commission · Taj Bengal · 2024</div>
+    </div>
+    <div class="review-card sr d3">
+      <div class="rv-stars"><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div><div class="rv-star"></div></div>
+      <p class="rv-quote">My father cried when he saw the film. He said it was the first time in his life he truly understood why people spend money on this. The private portal means our family across the world can watch it forever.</p>
+      <div class="rv-rule"></div>
+      <div class="rv-name">Meera & Devraj Roy</div>
+      <div class="rv-occasion">Wedding Commission · Destination Udaipur · 2023</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ APPLICATION FORM ══════ -->
+<section class="apply-section" id="apply">
+  <div class="apply-left">
+    <div class="apply-kicker sr">The Application</div>
+    <h2 class="apply-title sr d1">
+      Reserve Your<br>
+      <em>Legacy.</em>
+    </h2>
+    <span class="apply-script sr d2">commissions are strictly limited.</span>
+    <p class="apply-desc sr d3">We accept 24 commissions per year. This application allows us to understand your vision and confirm availability. We respond to every application within 48 hours.</p>
+    <div class="apply-perks sr d3">
+      <div class="ap-item"><div class="ap-dot"></div>Response within 48 hours — no automated replies</div>
+      <div class="ap-item"><div class="ap-dot"></div>Complimentary consultation call with the lead artist</div>
+      <div class="ap-item"><div class="ap-dot"></div>Transparent pricing — no hidden fees, ever</div>
+      <div class="ap-item"><div class="ap-dot"></div>Full rights to all images and film delivered</div>
+      <div class="ap-item"><div class="ap-dot"></div>10-year archive guarantee — not just a USB drive</div>
+    </div>
+  </div>
+
+  <div class="apply-form-card sr sr2 d1">
+    <div class="afc-title">Commission Application</div>
+    <div class="afc-sub">All fields are confidential. We take your privacy as seriously as your memories.</div>
+
+    <div class="f-row">
+      <div class="fg">
+        <label class="fl">Your Full Name</label>
+        <input class="fi" type="text" placeholder="As it appears on your invitation"/>
+      </div>
+      <div class="fg">
+        <label class="fl">Partner's Name</label>
+        <input class="fi" type="text" placeholder="Full name"/>
+      </div>
+    </div>
+    <div class="f-row">
+      <div class="fg">
+        <label class="fl">Wedding Date</label>
+        <input class="fi" type="date"/>
+      </div>
+      <div class="fg">
+        <label class="fl">Wedding City</label>
+        <input class="fi" type="text" placeholder="Primary venue city"/>
+      </div>
+    </div>
+    <div class="fg">
+      <label class="fl">Contact Number</label>
+      <input class="fi" type="tel" placeholder="+91 — for our consultation call"/>
+    </div>
+    <div class="fg">
+      <label class="fl">Commission Type</label>
+      <select class="fi">
+        <option value="" disabled selected>Select your commission</option>
+        <option>Photography Only</option>
+        <option>Cinematography Only</option>
+        <option>Complete Legacy Commission (Photo + Film)</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label class="fl">Investment Range — Your Budget</label>
+      <select class="fi">
+        <option value="" disabled selected>Select your investment range</option>
+        <option>₹1,50,000 – ₹2,50,000</option>
+        <option>₹2,50,000 – ₹4,00,000</option>
+        <option>₹4,00,000 – ₹6,00,000</option>
+        <option>₹6,00,000 – ₹10,00,000</option>
+        <option>₹10,00,000+</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label class="fl">Tell Us About Your Wedding</label>
+      <input class="fi" type="text" placeholder="Venue, scale, the feeling you want to preserve..."/>
+    </div>
+
+    <button class="btn-apply-submit"><span>Submit Your Application →</span></button>
+    <div class="apply-disclaimer">This is an application for a consultation — not a binding commitment. We will contact you within 48 hours to discuss availability and your vision.</div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-body">
+    <div>
+      <a href="#" class="fl-brand-name">Bibaho</a>
+      <span class="fl-brand-script">Diaries</span>
+      <p class="fl-tagline">A closed-door atelier for legacy wedding commissions. Bengal's most trusted custodians of family visual history.</p>
+      <div class="fl-socials">
+        <a class="fl-social" href="#">f</a>
+        <a class="fl-social" href="#">ig</a>
+        <a class="fl-social" href="#">yt</a>
+        <a class="fl-social" href="#">in</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-head">Navigate</div>
+      <ul class="fc-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">The Archive</a></li>
+        <li><a href="#">The Vault</a></li>
+        <li><a href="#">Methodology</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Apply</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-head">Services</div>
+      <ul class="fc-links">
+        <li><a href="#">Legacy Photography</a></li>
+        <li><a href="#">Cinematic Film</a></li>
+        <li><a href="#">Complete Commission</a></li>
+        <li><a href="#">Pre-Wedding Session</a></li>
+        <li><a href="#">Private Cinema Portal</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-head">Reach Us</div>
+      <ul class="fc-links">
+        <li><a href="#">West Bengal, India</a></li>
+        <li><a href="#">bibahodiaries.in</a></li>
+        <li><a href="#">Pan India & Destination</a></li>
+        <li><a href="#">Request a Consultation</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span class="fb-copy">© 2025 Bibaho Diaries. All rights reserved. Commissions strictly limited.</span>
+    <span class="fb-right">Custodians of Legacy <span>◆</span> Bengal · India</span>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+});
+(function lerp(){
+  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(lerp);
+})();
+document.querySelectorAll('a,button,.p-cell,.pillar-card,.method-cell,.review-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('c-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('c-hover'));
+});
+
+/* ── NAV SCROLL ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+/* ── SCROLL REVEAL ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+},{threshold:.08});
+document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
+
+/* ── HERO RING PARALLAX ── */
+const hRing=document.querySelector('.hero-ring-outer');
+window.addEventListener('scroll',()=>{
+  if(hRing) hRing.style.transform=`translate(-50%,-50%) rotate(${scrollY*.03}deg)`;
+});
+
+/* ── COUNTER ANIMATION ── */
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const els=e.target.querySelectorAll('[data-count]');
+    els.forEach(el=>{
+      const t=+el.dataset.count, s=el.dataset.suffix||'';
+      let c=0; const inc=t/55;
+      const ti=setInterval(()=>{
+        c+=inc; if(c>=t){c=t;clearInterval(ti);}
+        el.textContent=Math.floor(c)+s;
+      },28);
+    });
+    cObs.unobserve(e.target);
+  });
+},{threshold:.5});
+document.querySelectorAll('.id-stats,.pillar-card').forEach(el=>cObs.observe(el));
+</script>
+</body>
+</html>
